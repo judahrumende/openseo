@@ -9,6 +9,8 @@ import * as sqliteGa4 from "./ga4.schema";
 import * as sqliteGsc from "./gsc.schema";
 import * as sqliteTelemetry from "./telemetry.schema";
 import * as sqliteContent from "./content.schema";
+import * as sqliteShopping from "./shopping.schema";
+import * as sqliteAdvertising from "./advertising.schema";
 import * as pgApp from "./pg/app.schema";
 import * as pgProjectContext from "./pg/project-context.schema";
 import * as pgAudit from "./pg/audit.schema";
@@ -19,6 +21,8 @@ import * as pgGa4 from "./pg/ga4.schema";
 import * as pgGsc from "./pg/gsc.schema";
 import * as pgTelemetry from "./pg/telemetry.schema";
 import * as pgContent from "./pg/content.schema";
+import * as pgShopping from "./pg/shopping.schema";
+import * as pgAdvertising from "./pg/advertising.schema";
 
 // Canonical schema barrel. Repositories import their tables from here and the
 // provider-aware `db` from "@/db", so each repository is written ONCE for both
@@ -39,7 +43,9 @@ type AppSchema = typeof sqliteApp &
   typeof sqliteGa4 &
   typeof sqliteGsc &
   typeof sqliteTelemetry &
-  typeof sqliteContent;
+  typeof sqliteContent &
+  typeof sqliteShopping &
+  typeof sqliteAdvertising;
 
 const runtimeSchema =
   getDatabaseProvider() === "postgres"
@@ -54,6 +60,8 @@ const runtimeSchema =
         ...pgGsc,
         ...pgTelemetry,
         ...pgContent,
+        ...pgShopping,
+        ...pgAdvertising,
       }
     : {
         ...sqliteApp,
@@ -66,6 +74,8 @@ const runtimeSchema =
         ...sqliteGsc,
         ...sqliteTelemetry,
         ...sqliteContent,
+        ...sqliteShopping,
+        ...sqliteAdvertising,
       };
 
 // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- guarded by schema-parity.test.ts
@@ -111,4 +121,9 @@ export const {
   contentBriefs,
   contentAudits,
   contentAuditPages,
+  shoppingProductSearches,
+  shoppingDomainOverviews,
+  advertisingAdvertiserSearches,
+  advertisingAdCopySearches,
+  advertisingAdCopyDrafts,
 } = schema;

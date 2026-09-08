@@ -42,6 +42,14 @@ import {
   fetchAdsSearchVolume,
 } from "@/server/lib/dataforseo/google-ads";
 import {
+  postGoogleProductsTask,
+  postGoogleShoppingOverviewTask,
+} from "@/server/lib/dataforseo/merchant";
+import {
+  fetchAdsAdvertisers,
+  fetchAdsSearch,
+} from "@/server/lib/dataforseo/ads-transparency";
+import {
   fetchLiveSerp,
   fetchLocalSerp,
   fetchRankCheckSerp,
@@ -143,6 +151,25 @@ export function createDataforseoClient(customer: BillingCustomerContext) {
       topPages: meter(customer, fetchLlmTopPages),
       crossAggregatedMetrics: meter(customer, fetchLlmCrossAggregatedMetrics),
       llmResponse: meter(customer, fetchLlmResponse),
+    },
+    merchant: {
+      // task_post is where DataForSEO charges; collection runs unmetered
+      // through fetchGoogleProductsTaskResult/fetchGoogleShoppingOverviewTaskResult
+      // (see index.ts) — the same split as business_data task_post above.
+      productsTaskPost: meter(
+        customer,
+        postGoogleProductsTask,
+        "shopping_research",
+      ),
+      overviewTaskPost: meter(
+        customer,
+        postGoogleShoppingOverviewTask,
+        "shopping_research",
+      ),
+    },
+    adsTransparency: {
+      advertisers: meter(customer, fetchAdsAdvertisers, "advertising_research"),
+      search: meter(customer, fetchAdsSearch, "advertising_research"),
     },
   } as const;
 }

@@ -535,4 +535,48 @@ describe("mapDataforseoPathToCreditFeature", () => {
       ]),
     ).toBe("keyword_research");
   });
+
+  it("maps merchant paths to shopping_research", () => {
+    expect(
+      mapDataforseoPathToCreditFeature([
+        "v3",
+        "merchant",
+        "google",
+        "products",
+        "task_post",
+      ]),
+    ).toBe("shopping_research");
+    expect(
+      mapDataforseoPathToCreditFeature([
+        "v3",
+        "merchant",
+        "google",
+        "overview",
+        "task_post",
+      ]),
+    ).toBe("shopping_research");
+  });
+
+  it("maps serp ads_advertisers/ads_search paths to advertising_research", () => {
+    expect(
+      mapDataforseoPathToCreditFeature([
+        "v3",
+        "serp",
+        "google",
+        "ads_advertisers",
+        "live",
+        "advanced",
+      ]),
+    ).toBe("advertising_research");
+    expect(
+      mapDataforseoPathToCreditFeature([
+        "v3",
+        "serp",
+        "google",
+        "ads_search",
+        "live",
+        "advanced",
+      ]),
+    ).toBe("advertising_research");
+  });
 });

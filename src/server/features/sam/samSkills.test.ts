@@ -10,6 +10,7 @@ describe("buildSamSkillSource", () => {
     const names = (await source.list()).map((skill) => skill.name);
 
     expect(names).toEqual([
+      "ads-research",
       "competitive-landscape",
       "competitor-analysis",
       "content-marketing",
@@ -20,6 +21,7 @@ describe("buildSamSkillSource", () => {
       "seo-audit",
       "seo-coach",
       "seo-project-setup",
+      "shopping-research",
     ]);
 
     const loaded = await source.load("seo-project-setup");

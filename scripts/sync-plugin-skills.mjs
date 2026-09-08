@@ -12,6 +12,7 @@ const sourceDir = join(repoRoot, ".agents/skills");
 const targetDir = join(repoRoot, "plugins/openseo/skills");
 
 const skills = [
+  "ads-research",
   "competitive-landscape",
   "competitor-analysis",
   "content-marketing",
@@ -22,6 +23,7 @@ const skills = [
   "seo-audit",
   "seo-coach",
   "seo-project-setup",
+  "shopping-research",
 ];
 
 // Wipe and rebuild so a skill removed from the list above doesn't leave a

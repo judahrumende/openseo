@@ -33,6 +33,12 @@ export {
   type BusinessTaskEndpoint,
   type BusinessTaskOutcome,
 } from "@/server/lib/dataforseo/business";
+export {
+  fetchGoogleProductsTaskResult,
+  fetchGoogleShoppingOverviewTaskResult,
+  type MerchantTaskOutcome,
+  type MerchantOverviewOutcome,
+} from "@/server/lib/dataforseo/merchant";
 
 export type {
   LabsKeywordDataItem,

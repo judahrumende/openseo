@@ -6,8 +6,10 @@ import {
   Globe,
   LayoutDashboard,
   Link2,
+  Megaphone,
   MessageSquare,
   Search,
+  ShoppingBag,
   Sparkles,
   TrendingUp,
 } from "lucide-react";
@@ -57,6 +59,16 @@ const projectNavItems = [
     to: "/p/$projectId/content" as const,
     label: "Content Marketing",
     icon: FileText,
+  },
+  {
+    to: "/p/$projectId/shopping" as const,
+    label: "Shopping Research",
+    icon: ShoppingBag,
+  },
+  {
+    to: "/p/$projectId/advertising" as const,
+    label: "Advertising Research",
+    icon: Megaphone,
   },
   {
     to: "/p/$projectId/audit" as const,
@@ -116,6 +128,8 @@ export function getProjectNavGroups(projectId: string) {
         byPath("/p/$projectId/domain"),
         byPath("/p/$projectId/backlinks"),
         byPath("/p/$projectId/content"),
+        byPath("/p/$projectId/shopping"),
+        byPath("/p/$projectId/advertising"),
         byPath("/p/$projectId/brand-lookup"),
         byPath("/p/$projectId/prompt-explorer"),
       ],

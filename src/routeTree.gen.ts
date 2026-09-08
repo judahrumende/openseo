@@ -43,6 +43,7 @@ import { Route as ProjectPProjectIdRouteRouteImport } from './routes/_project/p/
 import { Route as ProjectPProjectIdIndexRouteImport } from './routes/_project/p/$projectId/index'
 import { Route as ApiGscOauthCallbackRouteImport } from './routes/api/gsc/oauth/callback'
 import { Route as ApiGa4OauthCallbackRouteImport } from './routes/api/ga4/oauth/callback'
+import { Route as ProjectPProjectIdShoppingRouteImport } from './routes/_project/p/$projectId/shopping'
 import { Route as ProjectPProjectIdSettingsRouteImport } from './routes/_project/p/$projectId/settings'
 import { Route as ProjectPProjectIdSearchPerformanceRouteImport } from './routes/_project/p/$projectId/search-performance'
 import { Route as ProjectPProjectIdSavedRouteImport } from './routes/_project/p/$projectId/saved'
@@ -55,15 +56,20 @@ import { Route as ProjectPProjectIdContentRouteImport } from './routes/_project/
 import { Route as ProjectPProjectIdBrandLookupRouteImport } from './routes/_project/p/$projectId/brand-lookup'
 import { Route as ProjectPProjectIdBacklinksRouteImport } from './routes/_project/p/$projectId/backlinks'
 import { Route as ProjectPProjectIdAuditRouteImport } from './routes/_project/p/$projectId/audit'
+import { Route as ProjectPProjectIdAdvertisingRouteImport } from './routes/_project/p/$projectId/advertising'
+import { Route as ProjectPProjectIdShoppingIndexRouteImport } from './routes/_project/p/$projectId/shopping/index'
 import { Route as ProjectPProjectIdSettingsIndexRouteImport } from './routes/_project/p/$projectId/settings/index'
 import { Route as ProjectPProjectIdRankTrackingIndexRouteImport } from './routes/_project/p/$projectId/rank-tracking/index'
 import { Route as ProjectPProjectIdContentIndexRouteImport } from './routes/_project/p/$projectId/content/index'
 import { Route as ProjectPProjectIdAuditIndexRouteImport } from './routes/_project/p/$projectId/audit/index'
+import { Route as ProjectPProjectIdAdvertisingIndexRouteImport } from './routes/_project/p/$projectId/advertising/index'
+import { Route as ProjectPProjectIdShoppingDomainRouteImport } from './routes/_project/p/$projectId/shopping/domain'
 import { Route as ProjectPProjectIdSettingsIntegrationsRouteImport } from './routes/_project/p/$projectId/settings/integrations'
 import { Route as ProjectPProjectIdSettingsContextRouteImport } from './routes/_project/p/$projectId/settings/context'
 import { Route as ProjectPProjectIdRankTrackingConfigIdRouteImport } from './routes/_project/p/$projectId/rank-tracking/$configId'
 import { Route as ProjectPProjectIdContentBriefsRouteImport } from './routes/_project/p/$projectId/content/briefs'
 import { Route as ProjectPProjectIdContentAuditRouteImport } from './routes/_project/p/$projectId/content/audit'
+import { Route as ProjectPProjectIdAdvertisingAdCopyRouteImport } from './routes/_project/p/$projectId/advertising/ad-copy'
 import { Route as ProjectPProjectIdAuditIssuesResultIdRouteImport } from './routes/_project/p/$projectId/audit/issues/$resultId'
 
 const VerifyEmailRoute = VerifyEmailRouteImport.update({
@@ -236,6 +242,12 @@ const ApiGa4OauthCallbackRoute = ApiGa4OauthCallbackRouteImport.update({
   path: '/api/ga4/oauth/callback',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectPProjectIdShoppingRoute =
+  ProjectPProjectIdShoppingRouteImport.update({
+    id: '/shopping',
+    path: '/shopping',
+    getParentRoute: () => ProjectPProjectIdRouteRoute,
+  } as any)
 const ProjectPProjectIdSettingsRoute =
   ProjectPProjectIdSettingsRouteImport.update({
     id: '/settings',
@@ -304,6 +316,18 @@ const ProjectPProjectIdAuditRoute = ProjectPProjectIdAuditRouteImport.update({
   path: '/audit',
   getParentRoute: () => ProjectPProjectIdRouteRoute,
 } as any)
+const ProjectPProjectIdAdvertisingRoute =
+  ProjectPProjectIdAdvertisingRouteImport.update({
+    id: '/advertising',
+    path: '/advertising',
+    getParentRoute: () => ProjectPProjectIdRouteRoute,
+  } as any)
+const ProjectPProjectIdShoppingIndexRoute =
+  ProjectPProjectIdShoppingIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ProjectPProjectIdShoppingRoute,
+  } as any)
 const ProjectPProjectIdSettingsIndexRoute =
   ProjectPProjectIdSettingsIndexRouteImport.update({
     id: '/',
@@ -327,6 +351,18 @@ const ProjectPProjectIdAuditIndexRoute =
     id: '/',
     path: '/',
     getParentRoute: () => ProjectPProjectIdAuditRoute,
+  } as any)
+const ProjectPProjectIdAdvertisingIndexRoute =
+  ProjectPProjectIdAdvertisingIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ProjectPProjectIdAdvertisingRoute,
+  } as any)
+const ProjectPProjectIdShoppingDomainRoute =
+  ProjectPProjectIdShoppingDomainRouteImport.update({
+    id: '/domain',
+    path: '/domain',
+    getParentRoute: () => ProjectPProjectIdShoppingRoute,
   } as any)
 const ProjectPProjectIdSettingsIntegrationsRoute =
   ProjectPProjectIdSettingsIntegrationsRouteImport.update({
@@ -357,6 +393,12 @@ const ProjectPProjectIdContentAuditRoute =
     id: '/audit',
     path: '/audit',
     getParentRoute: () => ProjectPProjectIdContentRoute,
+  } as any)
+const ProjectPProjectIdAdvertisingAdCopyRoute =
+  ProjectPProjectIdAdvertisingAdCopyRouteImport.update({
+    id: '/ad-copy',
+    path: '/ad-copy',
+    getParentRoute: () => ProjectPProjectIdAdvertisingRoute,
   } as any)
 const ProjectPProjectIdAuditIssuesResultIdRoute =
   ProjectPProjectIdAuditIssuesResultIdRouteImport.update({
@@ -393,6 +435,7 @@ export interface FileRoutesByFullPath {
   '/api/autumn/$': typeof ApiAutumnSplatRoute
   '/settings/': typeof AppSettingsIndexRoute
   '/onboarding/': typeof AuthenticatedOnboardingIndexRoute
+  '/p/$projectId/advertising': typeof ProjectPProjectIdAdvertisingRouteWithChildren
   '/p/$projectId/audit': typeof ProjectPProjectIdAuditRouteWithChildren
   '/p/$projectId/backlinks': typeof ProjectPProjectIdBacklinksRoute
   '/p/$projectId/brand-lookup': typeof ProjectPProjectIdBrandLookupRoute
@@ -405,18 +448,23 @@ export interface FileRoutesByFullPath {
   '/p/$projectId/saved': typeof ProjectPProjectIdSavedRoute
   '/p/$projectId/search-performance': typeof ProjectPProjectIdSearchPerformanceRoute
   '/p/$projectId/settings': typeof ProjectPProjectIdSettingsRouteWithChildren
+  '/p/$projectId/shopping': typeof ProjectPProjectIdShoppingRouteWithChildren
   '/api/ga4/oauth/callback': typeof ApiGa4OauthCallbackRoute
   '/api/gsc/oauth/callback': typeof ApiGscOauthCallbackRoute
   '/p/$projectId/': typeof ProjectPProjectIdIndexRoute
+  '/p/$projectId/advertising/ad-copy': typeof ProjectPProjectIdAdvertisingAdCopyRoute
   '/p/$projectId/content/audit': typeof ProjectPProjectIdContentAuditRoute
   '/p/$projectId/content/briefs': typeof ProjectPProjectIdContentBriefsRoute
   '/p/$projectId/rank-tracking/$configId': typeof ProjectPProjectIdRankTrackingConfigIdRoute
   '/p/$projectId/settings/context': typeof ProjectPProjectIdSettingsContextRoute
   '/p/$projectId/settings/integrations': typeof ProjectPProjectIdSettingsIntegrationsRoute
+  '/p/$projectId/shopping/domain': typeof ProjectPProjectIdShoppingDomainRoute
+  '/p/$projectId/advertising/': typeof ProjectPProjectIdAdvertisingIndexRoute
   '/p/$projectId/audit/': typeof ProjectPProjectIdAuditIndexRoute
   '/p/$projectId/content/': typeof ProjectPProjectIdContentIndexRoute
   '/p/$projectId/rank-tracking/': typeof ProjectPProjectIdRankTrackingIndexRoute
   '/p/$projectId/settings/': typeof ProjectPProjectIdSettingsIndexRoute
+  '/p/$projectId/shopping/': typeof ProjectPProjectIdShoppingIndexRoute
   '/p/$projectId/audit/issues/$resultId': typeof ProjectPProjectIdAuditIssuesResultIdRoute
 }
 export interface FileRoutesByTo {
@@ -456,15 +504,19 @@ export interface FileRoutesByTo {
   '/api/ga4/oauth/callback': typeof ApiGa4OauthCallbackRoute
   '/api/gsc/oauth/callback': typeof ApiGscOauthCallbackRoute
   '/p/$projectId': typeof ProjectPProjectIdIndexRoute
+  '/p/$projectId/advertising/ad-copy': typeof ProjectPProjectIdAdvertisingAdCopyRoute
   '/p/$projectId/content/audit': typeof ProjectPProjectIdContentAuditRoute
   '/p/$projectId/content/briefs': typeof ProjectPProjectIdContentBriefsRoute
   '/p/$projectId/rank-tracking/$configId': typeof ProjectPProjectIdRankTrackingConfigIdRoute
   '/p/$projectId/settings/context': typeof ProjectPProjectIdSettingsContextRoute
   '/p/$projectId/settings/integrations': typeof ProjectPProjectIdSettingsIntegrationsRoute
+  '/p/$projectId/shopping/domain': typeof ProjectPProjectIdShoppingDomainRoute
+  '/p/$projectId/advertising': typeof ProjectPProjectIdAdvertisingIndexRoute
   '/p/$projectId/audit': typeof ProjectPProjectIdAuditIndexRoute
   '/p/$projectId/content': typeof ProjectPProjectIdContentIndexRoute
   '/p/$projectId/rank-tracking': typeof ProjectPProjectIdRankTrackingIndexRoute
   '/p/$projectId/settings': typeof ProjectPProjectIdSettingsIndexRoute
+  '/p/$projectId/shopping': typeof ProjectPProjectIdShoppingIndexRoute
   '/p/$projectId/audit/issues/$resultId': typeof ProjectPProjectIdAuditIssuesResultIdRoute
 }
 export interface FileRoutesById {
@@ -500,6 +552,7 @@ export interface FileRoutesById {
   '/api/autumn/$': typeof ApiAutumnSplatRoute
   '/_app/settings/': typeof AppSettingsIndexRoute
   '/_authenticated/onboarding/': typeof AuthenticatedOnboardingIndexRoute
+  '/_project/p/$projectId/advertising': typeof ProjectPProjectIdAdvertisingRouteWithChildren
   '/_project/p/$projectId/audit': typeof ProjectPProjectIdAuditRouteWithChildren
   '/_project/p/$projectId/backlinks': typeof ProjectPProjectIdBacklinksRoute
   '/_project/p/$projectId/brand-lookup': typeof ProjectPProjectIdBrandLookupRoute
@@ -512,18 +565,23 @@ export interface FileRoutesById {
   '/_project/p/$projectId/saved': typeof ProjectPProjectIdSavedRoute
   '/_project/p/$projectId/search-performance': typeof ProjectPProjectIdSearchPerformanceRoute
   '/_project/p/$projectId/settings': typeof ProjectPProjectIdSettingsRouteWithChildren
+  '/_project/p/$projectId/shopping': typeof ProjectPProjectIdShoppingRouteWithChildren
   '/api/ga4/oauth/callback': typeof ApiGa4OauthCallbackRoute
   '/api/gsc/oauth/callback': typeof ApiGscOauthCallbackRoute
   '/_project/p/$projectId/': typeof ProjectPProjectIdIndexRoute
+  '/_project/p/$projectId/advertising/ad-copy': typeof ProjectPProjectIdAdvertisingAdCopyRoute
   '/_project/p/$projectId/content/audit': typeof ProjectPProjectIdContentAuditRoute
   '/_project/p/$projectId/content/briefs': typeof ProjectPProjectIdContentBriefsRoute
   '/_project/p/$projectId/rank-tracking/$configId': typeof ProjectPProjectIdRankTrackingConfigIdRoute
   '/_project/p/$projectId/settings/context': typeof ProjectPProjectIdSettingsContextRoute
   '/_project/p/$projectId/settings/integrations': typeof ProjectPProjectIdSettingsIntegrationsRoute
+  '/_project/p/$projectId/shopping/domain': typeof ProjectPProjectIdShoppingDomainRoute
+  '/_project/p/$projectId/advertising/': typeof ProjectPProjectIdAdvertisingIndexRoute
   '/_project/p/$projectId/audit/': typeof ProjectPProjectIdAuditIndexRoute
   '/_project/p/$projectId/content/': typeof ProjectPProjectIdContentIndexRoute
   '/_project/p/$projectId/rank-tracking/': typeof ProjectPProjectIdRankTrackingIndexRoute
   '/_project/p/$projectId/settings/': typeof ProjectPProjectIdSettingsIndexRoute
+  '/_project/p/$projectId/shopping/': typeof ProjectPProjectIdShoppingIndexRoute
   '/_project/p/$projectId/audit/issues/$resultId': typeof ProjectPProjectIdAuditIssuesResultIdRoute
 }
 export interface FileRouteTypes {
@@ -556,6 +614,7 @@ export interface FileRouteTypes {
     | '/api/autumn/$'
     | '/settings/'
     | '/onboarding/'
+    | '/p/$projectId/advertising'
     | '/p/$projectId/audit'
     | '/p/$projectId/backlinks'
     | '/p/$projectId/brand-lookup'
@@ -568,18 +627,23 @@ export interface FileRouteTypes {
     | '/p/$projectId/saved'
     | '/p/$projectId/search-performance'
     | '/p/$projectId/settings'
+    | '/p/$projectId/shopping'
     | '/api/ga4/oauth/callback'
     | '/api/gsc/oauth/callback'
     | '/p/$projectId/'
+    | '/p/$projectId/advertising/ad-copy'
     | '/p/$projectId/content/audit'
     | '/p/$projectId/content/briefs'
     | '/p/$projectId/rank-tracking/$configId'
     | '/p/$projectId/settings/context'
     | '/p/$projectId/settings/integrations'
+    | '/p/$projectId/shopping/domain'
+    | '/p/$projectId/advertising/'
     | '/p/$projectId/audit/'
     | '/p/$projectId/content/'
     | '/p/$projectId/rank-tracking/'
     | '/p/$projectId/settings/'
+    | '/p/$projectId/shopping/'
     | '/p/$projectId/audit/issues/$resultId'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -619,15 +683,19 @@ export interface FileRouteTypes {
     | '/api/ga4/oauth/callback'
     | '/api/gsc/oauth/callback'
     | '/p/$projectId'
+    | '/p/$projectId/advertising/ad-copy'
     | '/p/$projectId/content/audit'
     | '/p/$projectId/content/briefs'
     | '/p/$projectId/rank-tracking/$configId'
     | '/p/$projectId/settings/context'
     | '/p/$projectId/settings/integrations'
+    | '/p/$projectId/shopping/domain'
+    | '/p/$projectId/advertising'
     | '/p/$projectId/audit'
     | '/p/$projectId/content'
     | '/p/$projectId/rank-tracking'
     | '/p/$projectId/settings'
+    | '/p/$projectId/shopping'
     | '/p/$projectId/audit/issues/$resultId'
   id:
     | '__root__'
@@ -662,6 +730,7 @@ export interface FileRouteTypes {
     | '/api/autumn/$'
     | '/_app/settings/'
     | '/_authenticated/onboarding/'
+    | '/_project/p/$projectId/advertising'
     | '/_project/p/$projectId/audit'
     | '/_project/p/$projectId/backlinks'
     | '/_project/p/$projectId/brand-lookup'
@@ -674,18 +743,23 @@ export interface FileRouteTypes {
     | '/_project/p/$projectId/saved'
     | '/_project/p/$projectId/search-performance'
     | '/_project/p/$projectId/settings'
+    | '/_project/p/$projectId/shopping'
     | '/api/ga4/oauth/callback'
     | '/api/gsc/oauth/callback'
     | '/_project/p/$projectId/'
+    | '/_project/p/$projectId/advertising/ad-copy'
     | '/_project/p/$projectId/content/audit'
     | '/_project/p/$projectId/content/briefs'
     | '/_project/p/$projectId/rank-tracking/$configId'
     | '/_project/p/$projectId/settings/context'
     | '/_project/p/$projectId/settings/integrations'
+    | '/_project/p/$projectId/shopping/domain'
+    | '/_project/p/$projectId/advertising/'
     | '/_project/p/$projectId/audit/'
     | '/_project/p/$projectId/content/'
     | '/_project/p/$projectId/rank-tracking/'
     | '/_project/p/$projectId/settings/'
+    | '/_project/p/$projectId/shopping/'
     | '/_project/p/$projectId/audit/issues/$resultId'
   fileRoutesById: FileRoutesById
 }
@@ -947,6 +1021,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiGa4OauthCallbackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_project/p/$projectId/shopping': {
+      id: '/_project/p/$projectId/shopping'
+      path: '/shopping'
+      fullPath: '/p/$projectId/shopping'
+      preLoaderRoute: typeof ProjectPProjectIdShoppingRouteImport
+      parentRoute: typeof ProjectPProjectIdRouteRoute
+    }
     '/_project/p/$projectId/settings': {
       id: '/_project/p/$projectId/settings'
       path: '/settings'
@@ -1031,6 +1112,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectPProjectIdAuditRouteImport
       parentRoute: typeof ProjectPProjectIdRouteRoute
     }
+    '/_project/p/$projectId/advertising': {
+      id: '/_project/p/$projectId/advertising'
+      path: '/advertising'
+      fullPath: '/p/$projectId/advertising'
+      preLoaderRoute: typeof ProjectPProjectIdAdvertisingRouteImport
+      parentRoute: typeof ProjectPProjectIdRouteRoute
+    }
+    '/_project/p/$projectId/shopping/': {
+      id: '/_project/p/$projectId/shopping/'
+      path: '/'
+      fullPath: '/p/$projectId/shopping/'
+      preLoaderRoute: typeof ProjectPProjectIdShoppingIndexRouteImport
+      parentRoute: typeof ProjectPProjectIdShoppingRoute
+    }
     '/_project/p/$projectId/settings/': {
       id: '/_project/p/$projectId/settings/'
       path: '/'
@@ -1058,6 +1153,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/p/$projectId/audit/'
       preLoaderRoute: typeof ProjectPProjectIdAuditIndexRouteImport
       parentRoute: typeof ProjectPProjectIdAuditRoute
+    }
+    '/_project/p/$projectId/advertising/': {
+      id: '/_project/p/$projectId/advertising/'
+      path: '/'
+      fullPath: '/p/$projectId/advertising/'
+      preLoaderRoute: typeof ProjectPProjectIdAdvertisingIndexRouteImport
+      parentRoute: typeof ProjectPProjectIdAdvertisingRoute
+    }
+    '/_project/p/$projectId/shopping/domain': {
+      id: '/_project/p/$projectId/shopping/domain'
+      path: '/domain'
+      fullPath: '/p/$projectId/shopping/domain'
+      preLoaderRoute: typeof ProjectPProjectIdShoppingDomainRouteImport
+      parentRoute: typeof ProjectPProjectIdShoppingRoute
     }
     '/_project/p/$projectId/settings/integrations': {
       id: '/_project/p/$projectId/settings/integrations'
@@ -1093,6 +1202,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/p/$projectId/content/audit'
       preLoaderRoute: typeof ProjectPProjectIdContentAuditRouteImport
       parentRoute: typeof ProjectPProjectIdContentRoute
+    }
+    '/_project/p/$projectId/advertising/ad-copy': {
+      id: '/_project/p/$projectId/advertising/ad-copy'
+      path: '/ad-copy'
+      fullPath: '/p/$projectId/advertising/ad-copy'
+      preLoaderRoute: typeof ProjectPProjectIdAdvertisingAdCopyRouteImport
+      parentRoute: typeof ProjectPProjectIdAdvertisingRoute
     }
     '/_project/p/$projectId/audit/issues/$resultId': {
       id: '/_project/p/$projectId/audit/issues/$resultId'
@@ -1145,6 +1261,24 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
   AppRouteRouteChildren,
 )
+
+interface ProjectPProjectIdAdvertisingRouteChildren {
+  ProjectPProjectIdAdvertisingAdCopyRoute: typeof ProjectPProjectIdAdvertisingAdCopyRoute
+  ProjectPProjectIdAdvertisingIndexRoute: typeof ProjectPProjectIdAdvertisingIndexRoute
+}
+
+const ProjectPProjectIdAdvertisingRouteChildren: ProjectPProjectIdAdvertisingRouteChildren =
+  {
+    ProjectPProjectIdAdvertisingAdCopyRoute:
+      ProjectPProjectIdAdvertisingAdCopyRoute,
+    ProjectPProjectIdAdvertisingIndexRoute:
+      ProjectPProjectIdAdvertisingIndexRoute,
+  }
+
+const ProjectPProjectIdAdvertisingRouteWithChildren =
+  ProjectPProjectIdAdvertisingRoute._addFileChildren(
+    ProjectPProjectIdAdvertisingRouteChildren,
+  )
 
 interface ProjectPProjectIdAuditRouteChildren {
   ProjectPProjectIdAuditIndexRoute: typeof ProjectPProjectIdAuditIndexRoute
@@ -1219,7 +1353,24 @@ const ProjectPProjectIdSettingsRouteWithChildren =
     ProjectPProjectIdSettingsRouteChildren,
   )
 
+interface ProjectPProjectIdShoppingRouteChildren {
+  ProjectPProjectIdShoppingDomainRoute: typeof ProjectPProjectIdShoppingDomainRoute
+  ProjectPProjectIdShoppingIndexRoute: typeof ProjectPProjectIdShoppingIndexRoute
+}
+
+const ProjectPProjectIdShoppingRouteChildren: ProjectPProjectIdShoppingRouteChildren =
+  {
+    ProjectPProjectIdShoppingDomainRoute: ProjectPProjectIdShoppingDomainRoute,
+    ProjectPProjectIdShoppingIndexRoute: ProjectPProjectIdShoppingIndexRoute,
+  }
+
+const ProjectPProjectIdShoppingRouteWithChildren =
+  ProjectPProjectIdShoppingRoute._addFileChildren(
+    ProjectPProjectIdShoppingRouteChildren,
+  )
+
 interface ProjectPProjectIdRouteRouteChildren {
+  ProjectPProjectIdAdvertisingRoute: typeof ProjectPProjectIdAdvertisingRouteWithChildren
   ProjectPProjectIdAuditRoute: typeof ProjectPProjectIdAuditRouteWithChildren
   ProjectPProjectIdBacklinksRoute: typeof ProjectPProjectIdBacklinksRoute
   ProjectPProjectIdBrandLookupRoute: typeof ProjectPProjectIdBrandLookupRoute
@@ -1232,11 +1383,14 @@ interface ProjectPProjectIdRouteRouteChildren {
   ProjectPProjectIdSavedRoute: typeof ProjectPProjectIdSavedRoute
   ProjectPProjectIdSearchPerformanceRoute: typeof ProjectPProjectIdSearchPerformanceRoute
   ProjectPProjectIdSettingsRoute: typeof ProjectPProjectIdSettingsRouteWithChildren
+  ProjectPProjectIdShoppingRoute: typeof ProjectPProjectIdShoppingRouteWithChildren
   ProjectPProjectIdIndexRoute: typeof ProjectPProjectIdIndexRoute
 }
 
 const ProjectPProjectIdRouteRouteChildren: ProjectPProjectIdRouteRouteChildren =
   {
+    ProjectPProjectIdAdvertisingRoute:
+      ProjectPProjectIdAdvertisingRouteWithChildren,
     ProjectPProjectIdAuditRoute: ProjectPProjectIdAuditRouteWithChildren,
     ProjectPProjectIdBacklinksRoute: ProjectPProjectIdBacklinksRoute,
     ProjectPProjectIdBrandLookupRoute: ProjectPProjectIdBrandLookupRoute,
@@ -1251,6 +1405,7 @@ const ProjectPProjectIdRouteRouteChildren: ProjectPProjectIdRouteRouteChildren =
     ProjectPProjectIdSearchPerformanceRoute:
       ProjectPProjectIdSearchPerformanceRoute,
     ProjectPProjectIdSettingsRoute: ProjectPProjectIdSettingsRouteWithChildren,
+    ProjectPProjectIdShoppingRoute: ProjectPProjectIdShoppingRouteWithChildren,
     ProjectPProjectIdIndexRoute: ProjectPProjectIdIndexRoute,
   }
 

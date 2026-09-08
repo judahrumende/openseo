@@ -62,6 +62,15 @@ import { researchContentTopicsTool } from "@/server/mcp/tools/research-content-t
 import { generateContentBriefTool } from "@/server/mcp/tools/generate-content-brief";
 import { runContentAuditTool } from "@/server/mcp/tools/run-content-audit";
 import {
+  getShoppingDomainOverviewTool,
+  researchShoppingProductsTool,
+} from "@/server/mcp/tools/shopping-tools";
+import {
+  generateAdCopyTool,
+  getAdCopyTool,
+  researchAdAdvertisersTool,
+} from "@/server/mcp/tools/advertising-tools";
+import {
   getSearchConsolePerformanceTool,
   inspectUrlsTool,
 } from "@/server/mcp/tools/search-console-tools";
@@ -209,6 +218,11 @@ export function createOpenSeoMcpServer(authProps: McpProps) {
   register(researchContentTopicsTool);
   register(generateContentBriefTool);
   register(runContentAuditTool);
+  register(researchShoppingProductsTool);
+  register(getShoppingDomainOverviewTool);
+  register(researchAdAdvertisersTool);
+  register(getAdCopyTool);
+  register(generateAdCopyTool);
 
   return server;
 }

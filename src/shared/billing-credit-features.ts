@@ -7,6 +7,8 @@ export type CreditFeature =
   | "ai_citations"
   | "ai_prompt_responses"
   | "local_seo"
+  | "shopping_research"
+  | "advertising_research"
   | "onboarding"
   | "agent";
 
@@ -20,6 +22,8 @@ const CREDIT_FEATURE_LABELS: Record<string, string> = {
   ai_prompt_responses: "AI Prompt Responses",
   ai_search: "AI Search",
   local_seo: "Local SEO",
+  shopping_research: "Shopping Research",
+  advertising_research: "Advertising Research",
   onboarding: "Onboarding",
   agent: "SAM Agent",
 };
@@ -41,10 +45,18 @@ export function mapDataforseoPathToCreditFeature(
     case "backlinks":
       return "backlinks";
     case "serp":
+      if (
+        normalizedPath[2] === "google" &&
+        ["ads_advertisers", "ads_search"].includes(normalizedPath[3])
+      ) {
+        return "advertising_research";
+      }
       return normalizedPath[2] === "google" &&
         ["maps", "local_finder"].includes(normalizedPath[3])
         ? "local_seo"
         : "keyword_research";
+    case "merchant":
+      return "shopping_research";
     case "ai_optimization":
       // llm_mentions/* are brand-citation lookups; every other ai_optimization
       // endpoint is a provider /llm_responses prompt response (chat_gpt, claude,
