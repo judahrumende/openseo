@@ -70,6 +70,28 @@ function OpenrouterApiKeyHelpPage() {
         </div>
 
         <div className="card bg-base-100 border border-base-300">
+          <div className="card-body gap-3">
+            <h2 className="card-title text-base">Using it for free</h2>
+            <p className="text-sm text-base-content/80">
+              OpenRouter offers $0 models (their <code>:free</code> tier), so
+              you can run AI features without adding credits. Set an additional{" "}
+              <code>OPENROUTER_MODEL</code> secret to{" "}
+              <code>openrouter/free</code> — OpenRouter's auto-router, which
+              picks among currently available free, tool-calling-capable models
+              for you.
+            </p>
+            <p className="text-sm text-base-content/60">
+              Trade-off: free models are rate-limited, rotate without notice,
+              and generally reason and write less well than paid models like the
+              default. If SAM's answers feel shallow or requests get
+              rate-limited during heavy use, that is the free tier, not a bug —
+              remove the <code>OPENROUTER_MODEL</code> override to fall back to
+              the paid default.
+            </p>
+          </div>
+        </div>
+
+        <div className="card bg-base-100 border border-base-300">
           <div className="card-body gap-2 text-sm text-base-content/75">
             <h2 className="card-title text-base">
               Cloudflare Workers (Dashboard UI)
