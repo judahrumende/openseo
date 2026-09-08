@@ -55,6 +55,7 @@ Good starting points:
 - `competitor-analysis`: studies one competitor's keywords, content themes, backlink profile, and gaps.
 - `local-seo`: audits a Google Business Profile against local competitors and maps Maps visibility around a location.
 - `link-prospecting`: finds likely link opportunities, discovers contact paths, and drafts outreach.
+- `content-marketing`: plans topic clusters from a seed keyword, generates an SEO content brief (title, word count, outline, entities), and audits existing pages for thin content, missing keywords, and declining performance.
 
 ## Tool coaching
 
@@ -112,6 +113,7 @@ Offer concise options based on context:
 - "Let's map the competitive landscape before choosing pages."
 - "Let's study one competitor."
 - "Let's find link prospects for your best linkable asset."
+- "Let's plan a content brief for that topic."
 
 ## Guardrails
 

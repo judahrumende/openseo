@@ -37,7 +37,9 @@ export interface RobotsResult {
  * from parsing so Workflows can checkpoint the text as durable step state and
  * re-derive the parsed result deterministically on replay.
  */
-async function fetchRobotsTxtText(origin: string): Promise<string | null> {
+export async function fetchRobotsTxtText(
+  origin: string,
+): Promise<string | null> {
   try {
     const response = await fetch(`${origin}/robots.txt`, {
       headers: { "User-Agent": "OpenSEO-Audit/1.0" },

@@ -14,6 +14,7 @@ const targetDir = join(repoRoot, "plugins/openseo/skills");
 const skills = [
   "competitive-landscape",
   "competitor-analysis",
+  "content-marketing",
   "keyword-clustering",
   "keyword-research",
   "link-prospecting",

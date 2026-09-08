@@ -1,0 +1,52 @@
+---
+title: "Content Marketing Agent Skill"
+description: "Plan topic clusters, generate SEO content briefs, and audit existing content with Claude Code, Codex, or another AI agent."
+---
+
+<RunSkillCallout command="/content-marketing" />
+
+The Content Marketing Agent Skill takes a project from "what should we write about" to "here's the brief" to "is our existing content still working."
+
+Your agent researches a seed keyword into subtopic clusters grouped by search intent, generates a content brief with a competitor-derived word count and outline, and audits your existing pages for thin content, missing keywords, and declining performance.
+
+## What this skill helps your agent do
+
+- Cluster a seed keyword into subtopics grouped by search intent, with a combined search-volume signal and the real questions people ask (People Also Ask, related searches).
+- Generate a content brief: title options, a target word count derived from live competitor page word counts (not a guess), an H2/H3 outline, entities to cover, and a target reading level.
+- Audit existing pages for thin content, whether the target keyword appears in the title/H1, and a decay signal comparing the last 90 days of Search Console clicks to the prior 90.
+- Check whether a topic is already covered by a healthy page before recommending a new article.
+
+## When to use it
+
+Use this skill when planning what to write next, briefing a writer, or checking whether content that's already live is still pulling its weight.
+
+It fits naturally after `keyword-research` (turn a promising keyword into a brief) and before or after `seo-audit` (content health is one input to the bigger picture).
+
+## What you get back
+
+- **Topic research**: subtopic clusters with their dominant intent and combined volume, plus the top questions searchers ask.
+- **Content brief**: title options, target word count with the competitor sample it came from, a nested outline, entities to cover, and a target reading level.
+- **Content audit**: one row per page — word count, target keyword and where it came from, title/H1 match, decay status, and flags — led with the pages that need attention.
+
+## How to get the best result
+
+- Give the agent a seed keyword or topic, or point it at a page URL you want audited.
+- Ask for topic research first when you're not sure which angle to write; skip straight to a brief when you already know the target keyword.
+- Content briefs need an OpenRouter API key configured for self-hosted deployments (hosted OpenSEO always has one); the agent will tell you if it's missing.
+- Add your site's important pages as Key Pages in project settings so a content audit can run without listing URLs by hand.
+
+## Use it with OpenSEO MCP
+
+Set up [OpenSEO MCP](/docs/mcp) so your agent can research keyword clusters, generate content briefs, and audit your pages against live Search Console data.
+
+## Read the actual skill
+
+The source `SKILL.md` lives on GitHub:
+
+- [Content Marketing skill](https://github.com/every-app/open-seo/tree/main/.agents/skills/content-marketing)
+
+## Related skills
+
+- [Keyword Research](/docs/skills/keyword-research) to find the keyword worth briefing in the first place.
+- [Keyword Clustering](/docs/skills/keyword-clustering) for a broader keyword-to-page mapping exercise.
+- [SEO Audit](/docs/skills/seo-audit) for the full-site technical picture alongside content health.

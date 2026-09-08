@@ -58,6 +58,9 @@ import {
 } from "@/server/mcp/tools/local-seo-tools";
 import { researchKeywordsTool } from "@/server/mcp/tools/research-keywords";
 import { saveKeywordsTool } from "@/server/mcp/tools/save-keywords";
+import { researchContentTopicsTool } from "@/server/mcp/tools/research-content-topics";
+import { generateContentBriefTool } from "@/server/mcp/tools/generate-content-brief";
+import { runContentAuditTool } from "@/server/mcp/tools/run-content-audit";
 import {
   getSearchConsolePerformanceTool,
   inspectUrlsTool,
@@ -203,6 +206,9 @@ export function createOpenSeoMcpServer(authProps: McpProps) {
   register(getAuditStatusTool);
   register(getAuditIssuesTool);
   register(getAuditPagesTool);
+  register(researchContentTopicsTool);
+  register(generateContentBriefTool);
+  register(runContentAuditTool);
 
   return server;
 }

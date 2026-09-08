@@ -21,6 +21,8 @@ data, or sensitive paths.
 - [ ] `2026-07-10T21:28:46Z` — `codex` — `pnpm --dir badseo run typecheck` works through the root toolchain but `pnpm --dir badseo run build` can't find Vite because `badseo/node_modules` is absent. Document or enforce the package-local install before validating the `badseo/` subpackage.
 - [ ] `2026-07-10T21:32:10Z` — `codex` — Formatting the `badseo/` workspace with `pnpm exec prettier` fails because Prettier is only available from the repository root. Document the root-only formatter command or expose a workspace-local formatting script.
 
+- [ ] `2026-09-08T06:15:00Z` — `claude` — Adding a new `src/db/<feature>.schema.ts` and wiring it into `src/db/schema.ts` (the provider-aware barrel) is not enough for `npm run db:generate` to see it — `drizzle.config.ts`/`drizzle-pg.config.ts` point at the separate raw barrels `src/db/d1/schema.ts` / `src/db/pg/schema.ts`, which `db:generate` reads directly. Forgetting either barrel silently prints "No schema changes, nothing to migrate" with no error. Worth a comment atop `src/db/schema.ts` pointing at the two raw barrels, or a test asserting all three stay in sync.
+
 ## Resolved
 
 Move fixed entries here, mark them checked, and append the resolving date or commit.

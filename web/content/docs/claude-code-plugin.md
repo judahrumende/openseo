@@ -46,6 +46,7 @@ Plugin skills are namespaced by the plugin name:
 /openseo:competitor-analysis
 /openseo:local-seo
 /openseo:link-prospecting
+/openseo:content-marketing
 ```
 
 ## Claude Desktop

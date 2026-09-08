@@ -22,6 +22,7 @@ const SKILL_NAMES = [
   "competitor-analysis",
   "link-prospecting",
   "local-seo",
+  "content-marketing",
   "seo-audit",
 ];
 const SKILLS_INSTALL = `npx skills add every-app/open-seo`;
